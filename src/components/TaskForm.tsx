@@ -11,12 +11,14 @@ export const TaskForm = () => {
         e.preventDefault()
         if(editedTask.taskId === ""){
             createTaskMutation.mutate({
+                priority: editedTask.priority,
                 title: editedTask.title,
                 body: editedTask.body,
             })
         }else{
             updateTaskMutation.mutate({
                 taskId: editedTask.taskId,
+                priority: editedTask.priority,
                 title: editedTask.title,
                 body: editedTask.body,
             })
@@ -27,6 +29,17 @@ export const TaskForm = () => {
         <form onSubmit={handleSubmit} className="mb-5 text-center">
             {(updateTaskMutation.isLoading || createTaskMutation.isLoading) && 
             (<p className='mb-2 text-green-500'>Mutation under process...</p>)}
+            <div>
+                <select
+                    className='mb-3 border border-gray-300 px-5 py-2'
+                    onChange={(e) => update({...editedTask, priority: Number(e.target.value)})}
+                >
+                    <option value={0}>-- Select Priority --</option>
+                    <option value={3}>Hight</option>
+                    <option value={2}>Common</option>
+                    <option value={1}>Low</option>
+                </select>
+            </div>
             <input
                 type={"text"}
                 className="mb-3 border border-gray-300 px-3 py-2"

@@ -5,7 +5,7 @@ import { UpdateTaskInput } from '../schema/todo'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid'
 import { useMutateTask } from '../hooks/useMutateTask'
 
-export const TaskItem: FC<UpdateTaskInput> = ({taskId, title, body}) => {
+export const TaskItem: FC<UpdateTaskInput> = ({taskId, priority, title, body}) => {
     const update = useStore((state) => state.updateEditedTask)
     const {deleteTaskMutation} = useMutateTask()
     return (
@@ -19,6 +19,7 @@ export const TaskItem: FC<UpdateTaskInput> = ({taskId, title, body}) => {
                     onClick={() => {
                         update({
                             taskId,
+                            priority,
                             title,
                             body,
                         })

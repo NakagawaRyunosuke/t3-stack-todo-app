@@ -23,7 +23,7 @@ export const todoRouter = t.router({
                 userId: ctx.session?.user?.id,
             },
             orderBy: {
-                createdAt: "desc"
+                priority: "desc"
             },
         })
     }),

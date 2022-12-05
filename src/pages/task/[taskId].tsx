@@ -12,6 +12,19 @@ const SingleTaskPage: NextPage = () => {
     const {data, isLoading, error} = trpc.todo.getSingleTask.useQuery({
         taskId,
     })
+    const showPriority = () => {
+        switch(data?.priority){
+            case 3:
+                return "Priority is Hight"
+            case 2:
+                return "Priority is Common"
+            case 1:
+                return "Priority is Low"
+            default:
+                return ""
+        }
+    }
+
     if(isLoading){
         return <Layout title="Task Details">Loading single task...</Layout>
     }
@@ -21,12 +34,13 @@ const SingleTaskPage: NextPage = () => {
     return (
         <Layout title="Task Details">
             <p className="mb-3 text-xl font-bold text-blue-600">{data?.title}</p>
+            <p className="my-1 text-sm">{showPriority()}</p>
             <p>{data?.body}</p>
             <p className="my-1 text-sm">
-                {data && format(new Date(data.createdAt), "yyyy-MM-dd HH:mm:ss")}
+                Create:{data && format(new Date(data.createdAt), "yyyy-MM-dd HH:mm:ss")}
             </p>
             <p className="my-1 text-sm">
-                {data && format(new Date(data.updatedAt), "yyyy-MM-dd HH:mm:ss")}
+                Update:{data && format(new Date(data.updatedAt), "yyyy-MM-dd HH:mm:ss")}
             </p>
             <Link href={"/"}>
                 <ArrowUturnLeftIcon className="mt-3 h-6 w-6 cursor-pointer text-blue-600" />

@@ -15,6 +15,7 @@ export const TaskList = () => {
                 <TaskItem
                     key={task.id}
                     taskId={task.id}
+                    priority={task.priority}
                     title={task.title}
                     body={task.body}
                 />

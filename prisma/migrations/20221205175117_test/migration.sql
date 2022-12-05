@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Task" (
     "id" TEXT NOT NULL,
+    "priority" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
     "body" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
