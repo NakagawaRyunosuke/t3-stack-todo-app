@@ -1,4 +1,4 @@
-import z, { string } from "zod"
+import z from "zod"
 
 export const createTaskSchema = z.object({
     title: z.string().max(20),
