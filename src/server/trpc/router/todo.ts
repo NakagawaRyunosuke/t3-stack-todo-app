@@ -44,6 +44,7 @@ export const todoRouter = t.router({
                 id: input.taskId,
             },
             data: {
+                priority: input.priority,
                 title: input.title,
                 body: input.body,
             },
