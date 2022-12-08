@@ -2,8 +2,7 @@ import { trpc } from "../utils/trpc"
 import {TaskItem} from "./TaskItem"
 
 export const TaskList = () => {
-    const {isLoading, error} = trpc.todo.getTasks.useQuery()
-    let {data} = trpc.todo.getTasks.useQuery()
+    const {data, isLoading, error} = trpc.todo.getTasks.useQuery()
     if(isLoading){
         return <p>Loading task list...</p>
     }
@@ -12,7 +11,6 @@ export const TaskList = () => {
     }
     return (
         <>
-            <button onClick={() => ({data} = trpc.todo.getTasks.useQuery())}>更新</button>
             <ul>
                 {data?.map((task) => (
                     <TaskItem
