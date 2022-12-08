@@ -1,4 +1,5 @@
 import {FormEvent} from 'react'
+import { useRouter } from 'next/router'
 import useStore from '../store'
 import { useMutateTask } from '../hooks/useMutateTask'
 
@@ -6,6 +7,7 @@ export const TaskForm = () => {
     const {createTaskMutation, updateTaskMutation} = useMutateTask()
     const {editedTask} = useStore()
     const update = useStore((state) => state.updateEditedTask)
+    const router = useRouter()
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -23,6 +25,7 @@ export const TaskForm = () => {
                 body: editedTask.body,
             })
         }
+        router.push("/")
     }
 
     return (
