@@ -3,6 +3,7 @@ import {TaskItem} from "./TaskItem"
 
 export const TaskList = () => {
     const {data, isLoading, error} = trpc.todo.getTasks.useQuery()
+    console.log(data)
     if(isLoading){
         return <p>Loading task list...</p>
     }
