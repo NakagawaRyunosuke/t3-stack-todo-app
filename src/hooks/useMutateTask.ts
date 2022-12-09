@@ -29,9 +29,18 @@ export const useMutateTask = () => {
         onSuccess: (res) => {
             const previousTodos = utils.todo.getTasks.getData()
             if(previousTodos){
-                utils.todo.getTasks.setData(
-                    previousTodos.map((task) => (task.id === res.id ? res : task))
-                )
+                const newTodos = previousTodos
+                .map((task) => (task.id === res.id ? res : task))
+                .sort((a, b) => {
+                    if(a.priority > b.priority){
+                        return -1
+                    }else if(a.priority < b.priority){
+                        return 1
+                    }else{
+                        return 0
+                    }
+                })
+                utils.todo.getTasks.setData(newTodos)
             }
             reset()
         }
@@ -41,9 +50,18 @@ export const useMutateTask = () => {
         onSuccess: (_, variables) => {
             const previousTodos = utils.todo.getTasks.getData()
             if(previousTodos){
-                utils.todo.getTasks.setData(
-                    previousTodos.filter((task) => task.id !== variables.taskId)
-                )
+                const newTodos = previousTodos
+                .filter((task) => task.id !== variables.taskId)
+                .sort((a, b) => {
+                    if(a.priority > b.priority){
+                        return -1
+                    }else if(a.priority < b.priority){
+                        return 1
+                    }else{
+                        return 0
+                    }
+                })
+                utils.todo.getTasks.setData(newTodos)
             }
             reset()
         }
