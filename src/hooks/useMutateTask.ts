@@ -18,8 +18,8 @@ export const useMutateTask = () => {
                         return 0
                     }
                 })
-                console.log(newTodos)
-                utils.todo.getTasks.setData([res, ...previousTodos])
+                
+                utils.todo.getTasks.setData(newTodos)
             }
             reset()
         }
