@@ -9,6 +9,16 @@ export const useMutateTask = () => {
         onSuccess: (res) => {
             const previousTodos = utils.todo.getTasks.getData()
             if(previousTodos){
+                const newTodos = [res, ...previousTodos].sort((a, b) => {
+                    if(a.priority > b.priority){
+                        return -1
+                    }else if(a.priority < b.priority){
+                        return 1
+                    }else{
+                        return 0
+                    }
+                })
+                console.log(newTodos)
                 utils.todo.getTasks.setData([res, ...previousTodos])
             }
             reset()
